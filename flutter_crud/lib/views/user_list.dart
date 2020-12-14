@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class UserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Users users = Provider.of(context, listen: false);
+    final Users users = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Lista de usuários'),
@@ -19,8 +19,7 @@ class UserList extends StatelessWidget {
       ),
       body: ListView.builder(
           itemCount: users.length,
-          itemBuilder: (context, index) =>
-              UserTile(users.values.elementAt(index))),
+          itemBuilder: (context, index) => UserTile(users.byIndex(index))),
     );
   }
 }

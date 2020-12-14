@@ -10,27 +10,42 @@ class Users with ChangeNotifier {
     return [..._items.values];
   }
 
+  User byIndex(int ind) {
+    return _items.values.elementAt(ind);
+  }
+
   get length => _items.length;
 
   get values => _items.values;
 
   void put(User user) {
-    if (user==null) return;
-  }
+    if (user == null) return;
 
-  final id = Random().nextDouble().toString();
-  _items.putIfAbsent(id, () => User()
+    if (user.id != null &&
+        user.id.trim().isNotEmpty &&
+        _items.containsKey(user.id)) {
+      _items.update(
+          user.id,
+          (_) => User(
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                avatarUrl: user.avatarUrl,
+              ));
+    } else {
+      final id = Random().nextDouble().toString();
 
-    id: id,
-    name: user.name,
-    email: user.email,
-    avatarUrl: user.avatarUrl,
+      _items.putIfAbsent(
+        id,
+        () => User(
+          id: id,
+          name: user.name,
+          email: user.email,
+          avatarUrl: user.avatarUrl,
+        ),
+      );
+    }
 
-   )
-
-   @override
-  void notifyListeners() {
-    // TODO: implement notifyListeners
-    super.notifyListeners();
+    //notifyListeners()
   }
 }
