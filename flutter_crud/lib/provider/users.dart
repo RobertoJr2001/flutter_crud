@@ -6,6 +6,7 @@ import 'package:flutter_crud/models/user.dart';
 
 class Users with ChangeNotifier {
   final Map<String, User> _items = {...DUMMY_USERS};
+
   List<User> get all {
     return [..._items.values];
   }
@@ -46,6 +47,13 @@ class Users with ChangeNotifier {
       );
     }
 
-    //notifyListeners()
+    notifyListeners();
+  }
+
+  void remove(User user) {
+    if (user != null && user.id != null) {
+      _items.remove(user.id);
+      notifyListeners();
+    }
   }
 }
