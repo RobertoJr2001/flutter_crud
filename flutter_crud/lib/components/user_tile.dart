@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_crud/models/user.dart';
-import 'package:flutter_crud/routes/app_routes.dart';
+import '../routes/app_routes.dart';
+
+import '../models/user.dart';
 
 class UserTile extends StatelessWidget {
   final User user;
