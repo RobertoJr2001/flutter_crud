@@ -40,7 +40,7 @@ class _UserFormState extends State<UserForm> {
           IconButton(
             icon: Icon(Icons.save),
             onPressed: () {
-              final isValid = _form.currentState.validate;
+              final isValid = _form.currentState.validate();
               if (isValid) {
                 _form.currentState.save();
                 Provider.of<Users>(context, listen: false).put(
