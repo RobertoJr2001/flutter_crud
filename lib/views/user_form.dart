@@ -41,8 +41,7 @@ class _UserFormState extends State<UserForm> {
             icon: Icon(Icons.save),
             onPressed: () {
               final isValid = _form.currentState.validate;
-
-              if (isValid == null) {
+              if (isValid) {
                 _form.currentState.save();
                 Provider.of<Users>(context, listen: false).put(
                   User(
@@ -67,7 +66,6 @@ class _UserFormState extends State<UserForm> {
               TextFormField(
                 initialValue: _formData['name'],
                 decoration: InputDecoration(labelText: 'Nome'),
-                // ignore: missing_return
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'Digite um nome!';
